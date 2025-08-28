@@ -1,0 +1,65 @@
+{
+  "name": "sol-sign",
+  "version": "1.0.0",
+  "description": "A CLI tool for signing messages with Solana keypairs",
+  "main": "dist/index.js",
+  "bin": {
+    "sol-sign": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/cli.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "crypto",
+    "signing",
+    "cli",
+    "blockchain",
+    "keypair",
+    "message"
+  ],
+    "author": "Aryamanraj <aryaman0816@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aryamanraj/sol-sign.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aryamanraj/sol-sign/issues"
+  },
+  "homepage": "https://github.com/Aryamanraj/sol-sign#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.2",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2",
+    "prettier": "^3.2.5"
+  }
+}
