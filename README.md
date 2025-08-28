@@ -34,19 +34,19 @@ npm install js-sol-sign
 ### Sign a Message with Keypair File
 
 ```bash
-js-sol-sign sign -m "Hello, Solana!" -k ./my-keypair.json
+js-sol-sign sign -m 'Hello, Solana!' -k ./my-keypair.json
 ```
 
 ### Sign a Message with Private Key
 
 ```bash
-js-sol-sign sign -m "Hello, Solana!" -p "your-private-key-here"
+js-sol-sign sign -m 'Hello, Solana!' -p "your-private-key-here"
 ```
 
 ### Verify a Signature
 
 ```bash
-js-sol-sign verify -m "Hello, Solana!" -s "signature-here" -p "public-key-here"
+js-sol-sign verify -m 'Hello, Solana!' -s "signature-here" -p "public-key-here"
 ```
 
 ### Generate a New Keypair
@@ -137,8 +137,8 @@ Sign a message with a Solana keypair.
 
 **Examples:**
 ```bash
-js-sol-sign sign -m "Hello World" -k ./keypair.json
-js-sol-sign sign -m "Hello World" -p "your-private-key" -o hex --verify
+js-sol-sign sign -m 'Hello World' -k ./keypair.json
+js-sol-sign sign -m 'Hello World' -p "your-private-key" -o hex --verify
 ```
 
 ### `js-sol-sign verify`
@@ -153,8 +153,8 @@ Verify a signature for a message.
 
 **Examples:**
 ```bash
-js-sol-sign verify -m "Hello World" -s "signature-here" -p "public-key-here"
-js-sol-sign verify -m "Hello World" -s "hex-signature" -p "public-key" -f hex
+js-sol-sign verify -m 'Hello World' -s "signature-here" -p "public-key-here"
+js-sol-sign verify -m 'Hello World' -s "hex-signature" -p "public-key" -f hex
 ```
 
 ### `js-sol-sign keypair`
