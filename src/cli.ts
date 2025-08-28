@@ -13,7 +13,7 @@ const program = new Command();
 const packageJson = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf8'));
 
 program
-  .name('solsigner')
+  .name('js-sol-sign')
   .description('Sign messages with Solana keypairs')
   .version(packageJson.version);
 
@@ -27,7 +27,7 @@ program
   .option('--verify', 'Verify the signature after signing')
   .action(async (options) => {
     try {
-      console.log(chalk.blue('🔐 Solsigner - Solana Message Signer\n'));
+      console.log(chalk.blue('🔐 JS-Sol-Sign - Solana Message Signer\n'));
 
       // Validate inputs
       if (!options.keypair && !options.privateKey) {
@@ -103,7 +103,7 @@ program
   .option('-f, --format <format>', 'Signature format (hex, base58, base64)', 'base58')
   .action(async (options) => {
     try {
-      console.log(chalk.blue('🔍 Solsigner - Signature Verification\n'));
+      console.log(chalk.blue('🔍 JS-Sol-Sign - Signature Verification\n'));
 
       const signer = new SolanaMessageSigner();
       const isValid = await signer.verifySignature(
@@ -137,7 +137,7 @@ program
   .option('--public-key-only', 'Only display the public key')
   .action(async (options) => {
     try {
-      console.log(chalk.blue('🔐 Solsigner - Keypair Generator\n'));
+      console.log(chalk.blue('🔐 JS-Sol-Sign - Keypair Generator\n'));
 
       const signer = new SolanaMessageSigner();
       const keypair = signer.generateKeypair();

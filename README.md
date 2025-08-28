@@ -1,8 +1,8 @@
-# Solsigner
+# JS-Sol-Sign
 
 A production-grade CLI tool for signing messages with Solana keypairs. Simple, secure, and easy to use.
 
-[![npm version](https://badge.fury.io/js/solsigner.svg)](https://badge.fury.io/js/solsigner)
+[![npm version](https://badge.fury.io/js/js-sol-sign.svg)](https://badge.fury.io/js/js-sol-sign)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -20,13 +20,13 @@ A production-grade CLI tool for signing messages with Solana keypairs. Simple, s
 ### Global Installation (Recommended)
 
 ```bash
-npm install -g solsigner
+npm install -g js-sol-sign
 ```
 
 ### Local Installation
 
 ```bash
-npm install solsigner
+npm install js-sol-sign
 ```
 
 ## Quick Start
@@ -34,26 +34,26 @@ npm install solsigner
 ### Sign a Message with Keypair File
 
 ```bash
-solsigner sign -m "Hello, Solana!" -k ./my-keypair.json
+js-sol-sign sign -m "Hello, Solana!" -k ./my-keypair.json
 ```
 
 ### Sign a Message with Private Key
 
 ```bash
-solsigner sign -m "Hello, Solana!" -p "your-private-key-here"
+js-sol-sign sign -m "Hello, Solana!" -p "your-private-key-here"
 ```
 
 ### Verify a Signature
 
 ```bash
-solsigner verify -m "Hello, Solana!" -s "signature-here" -p "public-key-here"
+js-sol-sign verify -m "Hello, Solana!" -s "signature-here" -p "public-key-here"
 ```
 
 ### Generate a New Keypair
 
 ```bash
-solsigner keypair
-solsigner keypair -o ./new-keypair.json
+js-sol-sign keypair
+js-sol-sign keypair -o ./new-keypair.json
 ```
 
 ## Shell Escaping for Special Characters
@@ -62,14 +62,14 @@ When your message contains special characters like `!`, `$`, or quotes, use prop
 
 ```bash
 # Use single quotes for messages with exclamation marks
-solsigner sign -m 'Hello World!' -k ./keypair.json
+js-sol-sign sign -m 'Hello World!' -k ./keypair.json
 
 # Use double quotes and escape for single quotes
-solsigner sign -m "Don\'t forget this" -k ./keypair.json
+js-sol-sign sign -m "Don\'t forget this" -k ./keypair.json
 
 # For complex messages, you can use a file
 echo "Complex message: !@#$%^&*()" > message.txt
-solsigner sign -m "$(cat message.txt)" -k ./keypair.json
+js-sol-sign sign -m "$(cat message.txt)" -k ./keypair.json
 ```
 
 ## Usage
@@ -124,7 +124,7 @@ sol-sign keypair --public-key-only
 
 ## Command Reference
 
-### `solsigner sign`
+### `js-sol-sign sign`
 
 Sign a message with a Solana keypair.
 
@@ -137,11 +137,11 @@ Sign a message with a Solana keypair.
 
 **Examples:**
 ```bash
-solsigner sign -m "Hello World" -k ./keypair.json
-solsigner sign -m "Hello World" -p "your-private-key" -o hex --verify
+js-sol-sign sign -m "Hello World" -k ./keypair.json
+js-sol-sign sign -m "Hello World" -p "your-private-key" -o hex --verify
 ```
 
-### `solsigner verify`
+### `js-sol-sign verify`
 
 Verify a signature for a message.
 
@@ -153,11 +153,11 @@ Verify a signature for a message.
 
 **Examples:**
 ```bash
-solsigner verify -m "Hello World" -s "signature-here" -p "public-key-here"
-solsigner verify -m "Hello World" -s "hex-signature" -p "public-key" -f hex
+js-sol-sign verify -m "Hello World" -s "signature-here" -p "public-key-here"
+js-sol-sign verify -m "Hello World" -s "hex-signature" -p "public-key" -f hex
 ```
 
-### `solsigner keypair`
+### `js-sol-sign keypair`
 
 Generate a new Solana keypair.
 
@@ -167,14 +167,14 @@ Generate a new Solana keypair.
 
 **Examples:**
 ```bash
-solsigner keypair
-solsigner keypair -o ./new-keypair.json
-solsigner keypair --public-key-only
+js-sol-sign keypair
+js-sol-sign keypair -o ./new-keypair.json
+js-sol-sign keypair --public-key-only
 ```
 
 ## Output Formats
 
-Solsigner supports three output formats for signatures:
+JS-Sol-Sign supports three output formats for signatures:
 
 - **base58** (default) - Standard Solana format
 - **hex** - Hexadecimal encoding
@@ -189,7 +189,7 @@ Solsigner supports three output formats for signatures:
 
 ## Keypair File Format
 
-Solsigner expects Solana keypair files in the standard JSON array format:
+JS-Sol-Sign expects Solana keypair files in the standard JSON array format:
 
 ```json
 [1, 2, 3, ..., 64]
@@ -199,7 +199,7 @@ This is a 64-byte array where the first 32 bytes are the private key and the las
 
 ## Error Handling
 
-Solsigner provides clear error messages for common issues:
+JS-Sol-Sign provides clear error messages for common issues:
 
 - Invalid keypair file format
 - Missing or incorrect private keys
@@ -213,8 +213,8 @@ Solsigner provides clear error messages for common issues:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Aryamanraj/solsigner.git
-cd solsigner
+git clone https://github.com/Aryamanraj/js-sol-sign.git
+cd js-sol-sign
 
 # Install dependencies
 npm install
@@ -257,10 +257,10 @@ npm run format
 
 ## API Reference
 
-Sol-Sign can also be used as a library in your Node.js projects:
+JS-Sol-Sign can also be used as a library in your Node.js projects:
 
 ```typescript
-import { SolanaMessageSigner } from 'solsigner';
+import { SolanaMessageSigner } from 'js-sol-sign';
 
 const signer = new SolanaMessageSigner();
 

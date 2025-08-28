@@ -1,10 +1,10 @@
 {
-  "name": "solsigner",
+  "name": "js-sol-sign",
   "version": "1.0.0",
   "description": "A CLI tool for signing messages with Solana keypairs",
   "main": "dist/index.js",
   "bin": {
-    "solsigner": "dist/cli.js"
+    "js-sol-sign": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
