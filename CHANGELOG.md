@@ -1,6 +1,8 @@
-## [1.1.0] - 2025-08-28
+## [1.2.0] - 2025-08-28
 
 ### Changes
+- feat: document automatic CI/CD pipeline capabilities
+
 - fix: add proper permissions for GitHub Actions bot
 - fix: handle initial release case in automatic versioning
 - feat: implement automatic version bumping and enhanced CI/CD
