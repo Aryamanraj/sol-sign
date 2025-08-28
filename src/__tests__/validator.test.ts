@@ -116,6 +116,7 @@ describe('Validator functions', () => {
     });
 
     it('should reject invalid signature formats', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(validateSignature('test', 'invalid' as any)).toBe(false);
       expect(validateSignature('', 'hex')).toBe(false);
     });
