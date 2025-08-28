@@ -25,6 +25,7 @@ program
   .option('-p, --private-key <key>', 'Private key as base58 string or array of bytes')
   .option('-o, --output <format>', 'Output format (hex, base58, base64)', 'base58')
   .option('--verify', 'Verify the signature after signing')
+  .option('--no-convert-newlines', 'Disable automatic conversion of literal \\n to actual newlines')
   .action(async (options) => {
     try {
       console.log(chalk.blue('🔐 JS-Sol-Sign - Solana Message Signer\n'));
@@ -44,6 +45,18 @@ program
       let signature: string;
       let publicKey: string;
 
+      // Convert literal \n to actual newlines by default (unless disabled)
+      let messageToSign = options.message;
+      if (options.convertNewlines !== false) {
+        const originalMessage = options.message;
+        messageToSign = options.message.replace(/\\n/g, '\n');
+        if (originalMessage !== messageToSign) {
+          console.log(chalk.yellow('🔄 Converted literal \\n to actual newlines'));
+          console.log(chalk.gray('Original length:'), chalk.gray(originalMessage.length));
+          console.log(chalk.gray('Converted length:'), chalk.gray(messageToSign.length));
+        }
+      }
+
       if (options.keypair) {
         // Validate keypair file
         if (!validateKeypairFile(options.keypair)) {
@@ -52,7 +65,7 @@ program
         }
 
         console.log(chalk.yellow(`📁 Using keypair file: ${options.keypair}`));
-        const result = await signer.signWithKeypairFile(options.message, options.keypair, options.output);
+        const result = await signer.signWithKeypairFile(messageToSign, options.keypair, options.output);
         signature = result.signature;
         publicKey = result.publicKey;
       } else {
@@ -63,21 +76,21 @@ program
         }
 
         console.log(chalk.yellow('🔑 Using provided private key'));
-        const result = await signer.signWithPrivateKey(options.message, options.privateKey, options.output);
+        const result = await signer.signWithPrivateKey(messageToSign, options.privateKey, options.output);
         signature = result.signature;
         publicKey = result.publicKey;
       }
 
       // Display results
       console.log(chalk.green('\n✅ Message signed successfully!\n'));
-      console.log(chalk.cyan('📝 Message:'), options.message);
+      console.log(chalk.cyan('📝 Message:'), messageToSign);
       console.log(chalk.cyan('🔑 Public Key:'), publicKey);
       console.log(chalk.cyan(`📋 Signature (${options.output}):`), signature);
 
       // Verify signature if requested
       if (options.verify) {
         console.log(chalk.yellow('\n🔍 Verifying signature...'));
-        const isValid = await signer.verifySignature(options.message, signature, publicKey, options.output);
+        const isValid = await signer.verifySignature(messageToSign, signature, publicKey, options.output);
         
         if (isValid) {
           console.log(chalk.green('✅ Signature verification: VALID'));
@@ -101,19 +114,33 @@ program
   .requiredOption('-s, --signature <signature>', 'Signature to verify')
   .requiredOption('-p, --public-key <key>', 'Public key to verify against')
   .option('-f, --format <format>', 'Signature format (hex, base58, base64)', 'base58')
+  .option('--no-convert-newlines', 'Disable automatic conversion of literal \\n to actual newlines')
   .action(async (options) => {
     try {
       console.log(chalk.blue('🔍 JS-Sol-Sign - Signature Verification\n'));
 
+      // Convert literal \n to actual newlines by default (unless disabled)
+      let messageToVerify = options.message;
+      if (options.convertNewlines !== false) {
+        const originalMessage = options.message;
+        messageToVerify = options.message.replace(/\\n/g, '\n');
+        if (originalMessage !== messageToVerify) {
+          console.log(chalk.yellow('🔄 Converted literal \\n to actual newlines'));
+          console.log(chalk.gray('Original length:'), chalk.gray(originalMessage.length));
+          console.log(chalk.gray('Converted length:'), chalk.gray(messageToVerify.length));
+          console.log();
+        }
+      }
+
       const signer = new SolanaMessageSigner();
       const isValid = await signer.verifySignature(
-        options.message,
+        messageToVerify,
         options.signature,
         options.publicKey,
         options.format
       );
 
-      console.log(chalk.cyan('📝 Message:'), options.message);
+      console.log(chalk.cyan('📝 Message:'), messageToVerify);
       console.log(chalk.cyan('📋 Signature:'), options.signature);
       console.log(chalk.cyan('🔑 Public Key:'), options.publicKey);
 
