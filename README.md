@@ -14,6 +14,7 @@ A production-grade CLI tool for signing messages with Solana keypairs. Simple, s
 - 🛡️ **Input validation** for security and reliability
 - 🎨 **Beautiful CLI interface** with colored output
 - 🧪 **Production-ready** with comprehensive tests
+- 🤖 **Automatic CI/CD** with version bumping and npm publishing
 
 ## Installation
 
