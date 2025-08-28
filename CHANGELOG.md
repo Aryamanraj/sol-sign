@@ -1,6 +1,8 @@
-## [1.2.0] - 2025-08-28
+## [1.3.0] - 2025-08-28
 
 ### Changes
+- feat: enable automatic newline conversion by default
+
 - feat: document automatic CI/CD pipeline capabilities
 
 - fix: add proper permissions for GitHub Actions bot
